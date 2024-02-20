@@ -8,9 +8,10 @@ const selectedUserForm = document.getElementById('selectedUserForm');
 selectedUserForm.style.display = 'none'
 
 submitBtn.addEventListener('click', () => {
-	post('http://localhost:3999/sugerenciasCorreos', 'json', {
+	post('http://localhost:3999/sugerenciasCorreos', 'json', 'application/json', {
 		correo: correo.value
 	}).then(response => {
+		console.log(response);
 		mostrarSugerencias(response.existe);
 	});
 });
@@ -67,7 +68,7 @@ function mostrarSugerencias(coincidencias) {
 						li.addEventListener('click', e => {
 							if (formSelectGrupo.style.display == "block") {
 								formSelectGrupo.style.display = "none"
-								post(`http://localhost:3999/actUsuario`, 'json', {
+								post(`http://localhost:3999/actUsuario`, 'json', 'application/json', {
 									id: selected._id,
 									correo: selected.correo,
 									grupo: selected.grupo,

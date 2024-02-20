@@ -11,7 +11,7 @@ function login(data) {
 	console.log('logueando ' + data);
 }
 submitBtnLogin.addEventListener('click', () => {
-	post('http://localhost:3999/login', 'json', {
+	post('http://localhost:3999/login', 'json', 'application/json', {
 		nombre: nombreLogin.value,
 		password: passwordLogin.value,
 		correo: correoLogin.value

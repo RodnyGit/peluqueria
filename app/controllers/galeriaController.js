@@ -1,44 +1,47 @@
-var Galeria = require('../models/galeriaModel');
+var Image = require('../models/imageModel');
 
 let listar = (req, res) => {
-	Galeria.find({}, (err, imagenesList) => {
+	Image.find({}, (err, imagenesList) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
 				err
 			});
 		}
-		return res.status(200).json({
-			ok: true,
-			imagenesList
-		});
+		else {
+			console.log(imagenesList);
+			return res.status(200).json({
+				ok: true,
+				imagenesList
+			});
+		}
 	});
 };
 
 let obtenerById = (req, res) => {
-	Galeria.findById(req.params.id, (err, user) => {
+	Image.findById(req.params.id, (err, image) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
 				err
 			});
 		}
-		return res.status(200).json({
-			ok: true,
-			user
-		});
+		else {
+			const base64String = image.data.toString('base64');
+			const dataUrl = `data:${image.contentType};base64,${base64String}`;
+			return res.status(200).json({
+				ok: true,
+				image: dataUrl
+			});
+		}
 	});
 };
 
 let agregar = (req, res) => {
-	// create a new user
-	let newImage = new Galeria({
-		nombreWorker: req.body.nombreWorker,
-		nombreClienta: req.body.nombreClienta,
-		fecha: req.body.fecha,
-		data: req.body.data
-	});
-	console.log(newImage);	
+	const newImage = new Image();
+	console.log(req.headers);
+	newImage.data = req.body;
+	newImage.contentType = req.headers['content-type'];
 	newImage.save((err, image) => {
 		if (err) {
 			return res.status(400).json({
@@ -54,7 +57,7 @@ let agregar = (req, res) => {
 };
 
 let actualizar = (req, res) => {
-	Galeria.findById(req.body.id, (err, image) => {
+	Image.findById(req.body.id, (err, image) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
@@ -80,14 +83,14 @@ let actualizar = (req, res) => {
 	});
 };
 let eliminar = (req, res) => {
-	Galeria.findById(req.body.id, (err, user) => {
+	Image.findById(req.body.id, (err, image) => {
 		if (err) {
 			return res.status(400).json({
 				ok: false,
 				err
 			});
 		}
-		user.remove((err, removedImage) => {
+		image.remove((err, removedImage) => {
 			if (err) {
 				return res.status(400).json({
 					ok: false,

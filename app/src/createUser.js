@@ -17,7 +17,7 @@ submitBtn.addEventListener('click', () => {
 		}
 	}
 	if (flag) {
-		post('http://localhost:3999/usuario', 'json', {
+		post('http://localhost:3999/usuario', 'json', 'application/json', {
 			nombre: nombre.value,
 			password: password.value,
 			correo: correo.value

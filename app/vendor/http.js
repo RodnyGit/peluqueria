@@ -11,15 +11,15 @@ async function get(url, type = 'json') {
     return res;
 }
 
-async function post(url, type = 'json', data) {    
+async function post(url, type, contentType, data) {
     const res = await fetch(
         url,
         {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': contentType
             },
-            body: JSON.stringify(data)
+            body: data
         }).then(response => {
             if (type == 'json') {
                 return response.json();
@@ -32,4 +32,19 @@ async function post(url, type = 'json', data) {
     return res;
 }
 
-export { get, post };
+function postImage(url, contentType, data) {
+    const res = fetch(
+        url,
+        {
+            method: 'POST',
+            // headers: {
+            //     'Content-Type': contentType
+            // },
+            body: data
+        }).then(response => {
+            console.log(response);
+        });
+    return res;
+}
+
+export { get, post, postImage };

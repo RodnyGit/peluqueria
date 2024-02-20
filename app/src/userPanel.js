@@ -1,4 +1,4 @@
-import { get, post } from '../vendor/http.js'
+import { get, post, postImage } from '../vendor/http.js'
 
 const formImage = document.getElementById("formImage");
 const inputImage = document.getElementById("inputImage");
@@ -6,6 +6,8 @@ const submitInputButton = document.getElementById("submitInputButton");
 let imagenLoaded = document.getElementById("imagenLoaded");
 
 const fileReader = new FileReader();
+
+console.log(inputImage.files);
 
 inputImage.addEventListener('change', e => {
     fileReader.readAsDataURL(inputImage.files[0]);
@@ -24,28 +26,34 @@ inputImage.addEventListener('change', e => {
     })
 })
 
-let archivo = FormData({
-    nombreWorker: 'req.body.nombreWorker',
-    nombreClienta: 'req.body.nombreClienta',
-    fecha: "req.body.fecha",
-    data: dataBase64
-})
+
+
+// const objeto = {
+//     nombreWorker: 'req.body.nombreWorker',
+//     nombreClienta: 'req.body.nombreClienta',
+//     fecha: "req.body.fecha",
+//     data: dataBase64
+// }
 
 formImage.addEventListener("submit", e => {
     e.preventDefault();
-    fileReader.readAsDataURL(inputImage.files[0]);
-    fileReader.addEventListener('load', e => {
-        const dataBase64 = Array(fileReader.result);
-        console.log(dataBase64);
-        post(`http://localhost:3999/addGaleria`, 'json', {
-            nombreWorker: 'req.body.nombreWorker',
-            nombreClienta: 'req.body.nombreClienta',
-            fecha: "req.body.fecha",
-            data: dataBase64
-        }).then(response => {
-            console.log(response);
-        });
-    })
+    const file = inputImage.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+
+    fetch('http://localhost:3999/addGaleria', {
+        method: 'POST',
+        body: file
+    }).then(response => {
+        console.log(response);
+    });
+    // postImage('http://localhost:3999/addGaleria', 'image/png', {
+    //     body: file
+    // }).then(response => {
+    //     console.log(response);
+    // });
+
+
 
 
 })

@@ -32,8 +32,9 @@ app.set('port', process.env.PORT || 3999);
 
 //middlewares
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 100000, limit: "500mb" }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '500mb' }));
+app.use(bodyParser.raw({ type: 'image/*', limit: '100mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());

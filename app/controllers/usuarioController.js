@@ -90,6 +90,8 @@ let agregar = (req, res) => {
 
 let sugerenciasCorreos = (req, res) => {
 	let busqueda = RegExp(`${req.body.correo}`);
+	console.log(req.headers);
+	console.log(req.body.correo);
 	Usuario.find({ correo: busqueda }, (err, users) => {
 		if (users.length > 0) {
 			return res.status(200).json({
