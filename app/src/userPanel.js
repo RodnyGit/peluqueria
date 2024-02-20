@@ -37,7 +37,12 @@ formImage.addEventListener("submit", e => {
     fileReader.addEventListener('load', e => {
         const dataBase64 = Array(fileReader.result);
         console.log(dataBase64);
-        post(`http://localhost:3999/addGaleria`, archivo).then(response => {
+        post(`http://localhost:3999/addGaleria`, 'json', {
+            nombreWorker: 'req.body.nombreWorker',
+            nombreClienta: 'req.body.nombreClienta',
+            fecha: "req.body.fecha",
+            data: dataBase64
+        }).then(response => {
             console.log(response);
         });
     })
