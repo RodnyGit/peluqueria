@@ -19,7 +19,7 @@ async function post(url, type, contentType, data) {
             headers: {
                 'Content-Type': contentType
             },
-            body: data
+            body: JSON.stringify(data)
         }).then(response => {
             if (type == 'json') {
                 return response.json();
@@ -32,19 +32,19 @@ async function post(url, type, contentType, data) {
     return res;
 }
 
-function postImage(url, contentType, data) {
-    const res = fetch(
-        url,
-        {
-            method: 'POST',
-            // headers: {
-            //     'Content-Type': contentType
-            // },
-            body: data
-        }).then(response => {
-            console.log(response);
-        });
-    return res;
-}
+// function postImage(url, contentType, data) {
+//     const res = fetch(
+//         url,
+//         {
+//             method: 'POST',
+//             // headers: {
+//             //     'Content-Type': contentType
+//             // },
+//             body: data
+//         }).then(response => {
+//             console.log(response);
+//         });
+//     return res;
+// }
 
-export { get, post, postImage };
+export { get, post };

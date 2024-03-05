@@ -20,6 +20,7 @@ correo.addEventListener('input', e => {
 	selectedUserForm.style.display = 'none';
 	selectedUser.innerHTML = '';
 })
+
 function mostrarSugerencias(coincidencias) {
 	let correos = [];
 	coincidencias.forEach(element => {
@@ -63,7 +64,7 @@ function mostrarSugerencias(coincidencias) {
 						<li 
 							class="border border-primary 
 							btn-secondary btn-secondary:hover" dataValue="${selected[key]}"> 
-							${key} : ${selected[key]} 
+							${key} : ${selected[key]}
 						</li>`;
 						li.addEventListener('click', e => {
 							if (formSelectGrupo.style.display == "block") {

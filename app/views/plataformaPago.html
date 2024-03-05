@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascara</title>
+    <link rel="stylesheet" href="../vendor/plataformaPago.css">
+</head>
+
+<body>
+    <a class="btn ml-2 btn-dark border border-success mb-2 mt-2 ml-2 text-danger" href="../views/login.html">Login</a>
+    <div class="row">
+    <h1>Plataforma de Pago</h1>
+    <form id="payment-form">
+        <div id="app">
+            <div class="card">
+                <div class="holder">Rodney Abad</div>
+                <input type="text" id="inputCard">
+                <input type="text" id="inputDate">
+                <input type="text" id="inputCVV">
+            </div>
+        </div>
+        <button type="submit">Pagar</button>
+    </form>
+    <div id="payment-message"></div>
+
+    <script src="../src/plataformaPago.js"></script>
+</body>
+
+</html>

@@ -15,5 +15,6 @@ app.get('/userPanel', (req, res) => {
 });
 
 app.use(require('./userRouter'));
+app.use(require('./galeriaRouter'));
 
 module.exports = app;

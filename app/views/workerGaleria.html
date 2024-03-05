@@ -25,14 +25,29 @@
                         <div id="imagenLoaded">
 
                         </div>
+                        <div id="imageData" style="display: none;">
+                            <input class="dataImage" id="workerInput" type="text" placeholder="worker">
+                            <div id="sugerenciasWorker"></div>
+                            <input class="dataImage" id="clientInput" type="text" placeholder="client">
+                            <div id="sugerenciasClient"></div>
+                        </div>
                     </div>
                 </div>
 
             </form>
+            <button id="imageListButton"
+                class="text-light col-md-3 mb-20 btn-dark form-control border border-primary bg-dark">
+                Listar
+            </button>
+            <div id="imageContainer"></div>
+        </div>
+        <div class="border border-primary col-md-5 bg bg-dark">
+            <h5 class="ml-2 text-primary"> Agenda</h5>
+
         </div>
     </div>
 
-    <script src="../src/userPanel.js" type="module"></script>
+    <script src="../src/workerGaleria.js" type="module"></script>
 </body>
 
 </html>
